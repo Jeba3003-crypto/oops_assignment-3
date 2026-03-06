@@ -1,0 +1,62 @@
+#include <iostream>
+using namespace std;
+
+class Student {
+protected:
+    string name;
+    int roll;
+public:
+    void getStudent() {
+        cout << "Enter Name: ";
+        cin >> name;
+        cout << "Enter Roll No: ";
+        cin >> roll;
+    }
+    void displayStudent() {
+        cout << "\nName: " << name << endl;
+        cout << "Roll No: " << roll << endl;
+    }
+};
+
+class Marks : public Student {
+protected:
+    int m1, m2;
+public:
+    void getMarks() {
+        cout << "Enter 2 Marks: ";
+        cin >> m1 >> m2;
+    }
+};
+
+class Result : public Marks {
+protected:
+    int total;
+    float average;
+    char grade;
+public:
+    void calculate() {
+        total = m1 + m2;
+        average = total / 2.0;
+
+        if (average >= 90) grade = 'A';
+        else if (average >= 75) grade = 'B';
+        else if (average >= 50) grade = 'C';
+        else grade = 'F';
+    }
+
+    void displayResult() {
+        displayStudent();
+        cout << "Marks: " << m1 << " " << m2 << endl;
+        cout << "Total: " << total << endl;
+        cout << "Average: " << average << endl;
+        cout << "Grade: " << grade << endl;
+    }
+};
+
+int main() {
+    Result s;
+    s.getStudent();
+    s.getMarks();
+    s.calculate();
+    s.displayResult();
+}
