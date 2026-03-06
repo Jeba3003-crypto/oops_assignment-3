@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+class Student {
+protected:
+    int mark;
+
+public:
+    virtual void getMark(int m) {
+        this->mark = m;
+    }
+
+    virtual void display() = 0;
+};
+
+class Result : public Student {
+public:
+    void display() {
+        cout << "Mark: " << mark << endl;
+
+        if(mark >= 50)
+            cout << "Status: PASS" << endl;
+        else
+            cout << "Status: FAIL" << endl;
+    }
+};
+
+int main() {
+    Student *ptr;
+    Result r;
+
+    ptr = &r;
+
+    ptr->getMark(45);
+    ptr->display();
+
+    return 0;
+}
