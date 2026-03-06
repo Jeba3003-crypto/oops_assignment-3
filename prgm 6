@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+class Student {
+protected:
+    int mark;
+
+public:
+    virtual void getMark(int m) {
+        this->mark = m;   // this pointer
+    }
+
+    virtual void display() = 0; // abstract class
+};
+
+class Result : public Student {
+public:
+    void display() {
+        cout << "Student Mark: " << mark << endl;
+    }
+};
+
+int main() {
+    Student *ptr;
+    Result r;
+
+    ptr = &r;  // dynamic binding
+
+    ptr->getMark(80);
+    ptr->display();
+
+    return 0;
+}
